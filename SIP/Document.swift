@@ -33,9 +33,8 @@ class Document: NSDocument {
     }
 
     override func data(ofType typeName: String) throws -> Data {
-        // Insert code here to write your document to data of the specified type, throwing an error in case of failure.
-        // Alternatively, you could remove this method and override fileWrapper(ofType:), write(to:ofType:), or write(to:ofType:for:originalContentsURL:) instead.
-        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        self.textContent = self.viewController!.textView!.string
+        return self.textContent!.data(using: String.Encoding.utf8)!
     }
     
     override func read(from url: URL, ofType typeName: String) throws {
